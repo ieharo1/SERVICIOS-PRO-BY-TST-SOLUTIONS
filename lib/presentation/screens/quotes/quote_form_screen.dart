@@ -29,9 +29,9 @@ class _QuoteFormScreenState extends ConsumerState<QuoteFormScreen> {
   String _status = 'Borrador';
   List<QuoteItem> _items = [];
   double _taxRate = 12.0;
-  String _currency = 'USD';
   
   bool _isLoading = false;
+  String _currency = 'USD';
   Quote? _existingQuote;
   String _quoteNumber = '';
 
@@ -79,6 +79,19 @@ class _QuoteFormScreenState extends ConsumerState<QuoteFormScreen> {
       _taxRate = quote.taxRate;
     }
     setState(() => _isLoading = false);
+  }
+
+  String _getCurrencySymbol() {
+    switch (_currency) {
+      case 'USD':
+        return '\$';
+      case 'EUR':
+        return '€';
+      case 'GBP':
+        return '£';
+      default:
+        return '\$';
+    }
   }
 
   @override
@@ -396,11 +409,11 @@ class _QuoteFormScreenState extends ConsumerState<QuoteFormScreen> {
                     ),
                     child: Column(
                       children: [
-                        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [const Text('Subtotal:'), Text('\$${_subtotal.toStringAsFixed(2)}')]),
+                        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [const Text('Subtotal:'), Text('${_getCurrencySymbol()}${_subtotal.toStringAsFixed(2)}')]),
                         const SizedBox(height: 4),
-                        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [Text('Impuesto (${_taxRate}%):'), Text('\$${_taxAmount.toStringAsFixed(2)}')]),
+                        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [Text('Impuesto (${_taxRate}%):'), Text('${_getCurrencySymbol()}${_taxAmount.toStringAsFixed(2)}')]),
                         const Divider(),
-                        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [const Text('TOTAL:', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)), Text('\$${_total.toStringAsFixed(2)}', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold))]),
+                        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [const Text('TOTAL:', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)), Text('${_getCurrencySymbol()}${_total.toStringAsFixed(2)}', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold))]),
                         const SizedBox(height: 16),
                         SizedBox(
                           width: double.infinity,
