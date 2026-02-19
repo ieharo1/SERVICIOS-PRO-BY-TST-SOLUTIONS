@@ -5,6 +5,7 @@ import '../../../core/constants/app_constants.dart';
 import '../../providers/quote_provider.dart';
 import '../../providers/work_order_provider.dart';
 import '../../providers/client_provider.dart';
+import '../../widgets/app_drawer.dart';
 
 class ReportsScreen extends ConsumerStatefulWidget {
   const ReportsScreen({super.key});
@@ -33,6 +34,7 @@ class _ReportsScreenState extends ConsumerState<ReportsScreen> {
           ),
         ),
       ),
+      drawer: const AppDrawer(currentRoute: '/reports'),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -291,7 +293,7 @@ class _ReportsScreenState extends ConsumerState<ReportsScreen> {
                     const Text(
                       '${AppConstants.appName}\n'
                       'Gestión profesional de cotizaciones y órdenes de trabajo.\n'
-                      '© 2024 TST Solutions',
+                      '© 2026 TST Solutions',
                     ),
                   ],
                 ),

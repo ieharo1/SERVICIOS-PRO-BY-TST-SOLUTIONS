@@ -5,6 +5,7 @@ import '../../../core/constants/app_constants.dart';
 import '../../providers/client_provider.dart';
 import '../../providers/quote_provider.dart';
 import '../../providers/work_order_provider.dart';
+import '../../widgets/app_drawer.dart';
 
 class DashboardScreen extends ConsumerStatefulWidget {
   const DashboardScreen({super.key});
@@ -80,6 +81,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
           ),
         ],
       ),
+      drawer: const AppDrawer(currentRoute: '/dashboard'),
       body: RefreshIndicator(
         onRefresh: () async => _loadData(),
         child: SingleChildScrollView(
@@ -215,7 +217,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                       const Text(
                         'SERVICIOS PRO BY TST SOLUTIONS\n'
                         'Gestión profesional de cotizaciones y órdenes de trabajo.\n'
-                        '© 2024 TST Solutions',
+                        '© 2026 TST Solutions',
                       ),
                     ],
                   ),

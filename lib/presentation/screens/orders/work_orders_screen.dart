@@ -5,6 +5,7 @@ import '../../../core/constants/app_constants.dart';
 import '../../providers/work_order_provider.dart';
 import '../../providers/business_profile_provider.dart';
 import '../../../core/utils/pdf_service.dart';
+import '../../widgets/app_drawer.dart';
 
 class WorkOrdersScreen extends ConsumerWidget {
   const WorkOrdersScreen({super.key});
@@ -31,6 +32,7 @@ class WorkOrdersScreen extends ConsumerWidget {
           ),
         ],
       ),
+      drawer: const AppDrawer(currentRoute: '/orders'),
       body: Column(
         children: [
           Padding(

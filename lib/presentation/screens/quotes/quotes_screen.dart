@@ -5,6 +5,7 @@ import '../../../core/constants/app_constants.dart';
 import '../../providers/quote_provider.dart';
 import '../../providers/business_profile_provider.dart';
 import '../../../core/utils/pdf_service.dart';
+import '../../widgets/app_drawer.dart';
 
 class QuotesScreen extends ConsumerWidget {
   const QuotesScreen({super.key});
@@ -31,6 +32,7 @@ class QuotesScreen extends ConsumerWidget {
           ),
         ],
       ),
+      drawer: const AppDrawer(currentRoute: '/quotes'),
       body: Column(
         children: [
           Padding(

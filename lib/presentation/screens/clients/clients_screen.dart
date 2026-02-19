@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../providers/client_provider.dart';
+import '../../widgets/app_drawer.dart';
 
 class ClientsScreen extends ConsumerWidget {
   const ClientsScreen({super.key});
@@ -27,6 +28,7 @@ class ClientsScreen extends ConsumerWidget {
           ),
         ],
       ),
+      drawer: const AppDrawer(currentRoute: '/clients'),
       body: Column(
         children: [
           Padding(

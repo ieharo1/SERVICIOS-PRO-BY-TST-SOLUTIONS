@@ -123,7 +123,7 @@ class SettingsScreen extends ConsumerWidget {
               ),
               SizedBox(height: 16),
               Text(
-                '© 2024 TST Solutions - Todos los derechos reservados.',
+                '© 2026 TST Solutions - Todos los derechos reservados.',
                 style: TextStyle(fontSize: 12, color: Colors.grey),
               ),
             ],

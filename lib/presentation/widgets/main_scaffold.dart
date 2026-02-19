@@ -2,10 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/constants/app_constants.dart';
 
-class MainScaffold extends StatelessWidget {
+class MainScaffold extends StatefulWidget {
   final Widget child;
 
   const MainScaffold({super.key, required this.child});
+
+  @override
+  State<MainScaffold> createState() => MainScaffoldState();
+}
+
+class MainScaffoldState extends State<MainScaffold> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  void openDrawer() {
+    _scaffoldKey.currentState?.openDrawer();
+  }
 
   int _calculateSelectedIndex(BuildContext context) {
     final location = GoRouterState.of(context).uri.path;
@@ -42,7 +53,8 @@ class MainScaffold extends StatelessWidget {
     final selectedIndex = _calculateSelectedIndex(context);
     
     return Scaffold(
-      body: child,
+      key: _scaffoldKey,
+      body: widget.child,
       bottomNavigationBar: NavigationBar(
         selectedIndex: selectedIndex,
         onDestinationSelected: (index) => _onItemTapped(context, index),
@@ -60,7 +72,7 @@ class MainScaffold extends StatelessWidget {
           NavigationDestination(
             icon: Icon(Icons.description_outlined),
             selectedIcon: Icon(Icons.description),
-            label: 'Cotizaciones',
+            label: 'Cotiz.',
           ),
           NavigationDestination(
             icon: Icon(Icons.build_outlined),
