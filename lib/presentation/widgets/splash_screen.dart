@@ -78,18 +78,19 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                       AppConstants.appName,
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 24,
+                        fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 10),
                     const Text(
-                      'Gestión profesional',
+                      'Gestión profesional de cotizaciones y órdenes de trabajo',
                       style: TextStyle(
                         color: Colors.white70,
-                        fontSize: 16,
+                        fontSize: 14,
                       ),
+                      textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 40),
                     const SizedBox(

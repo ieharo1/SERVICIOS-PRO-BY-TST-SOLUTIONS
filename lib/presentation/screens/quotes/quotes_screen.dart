@@ -3,7 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../providers/quote_provider.dart';
-import '../../providers/client_provider.dart';
+import '../../providers/business_profile_provider.dart';
+import '../../../core/utils/pdf_service.dart';
 
 class QuotesScreen extends ConsumerWidget {
   const QuotesScreen({super.key});
@@ -126,7 +127,16 @@ class QuotesScreen extends ConsumerWidget {
                               ),
                             ],
                           ),
-                          trailing: _StatusChip(status: quote.status),
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              IconButton(
+                                icon: const Icon(Icons.picture_as_pdf, color: Colors.red),
+                                onPressed: () => _generatePdf(context, ref, quote),
+                              ),
+                              _StatusChip(status: quote.status),
+                            ],
+                          ),
                           onTap: () => context.push('/quotes/edit/${quote.id}'),
                         ),
                       );
@@ -145,6 +155,29 @@ class QuotesScreen extends ConsumerWidget {
         child: const Icon(Icons.add),
       ),
     );
+  }
+
+  Future<void> _generatePdf(BuildContext context, WidgetRef ref, quote) async {
+    final profileAsync = ref.read(businessProfileNotifierProvider);
+    profileAsync.whenData((profile) async {
+      if (profile == null) {
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Configure su perfil de negocio primero')),
+          );
+        }
+        return;
+      }
+      try {
+        await PdfService.shareQuotePdf(business: profile, quote: quote);
+      } catch (e) {
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Error al generar PDF: $e')),
+          );
+        }
+      }
+    });
   }
 }
 

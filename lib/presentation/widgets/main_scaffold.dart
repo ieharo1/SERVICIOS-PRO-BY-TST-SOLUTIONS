@@ -175,6 +175,12 @@ class MainScaffold extends StatelessWidget {
                 _showAboutDialog(context);
               },
             ),
+            const Divider(),
+            ListTile(
+              leading: const Icon(Icons.business_center),
+              title: Text(AppConstants.appName),
+              subtitle: const Text('Versión 1.0.0'),
+            ),
           ],
         ),
       ),

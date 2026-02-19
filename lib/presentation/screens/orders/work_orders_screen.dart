@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../providers/work_order_provider.dart';
+import '../../providers/business_profile_provider.dart';
+import '../../../core/utils/pdf_service.dart';
 
 class WorkOrdersScreen extends ConsumerWidget {
   const WorkOrdersScreen({super.key});
@@ -112,7 +114,16 @@ class WorkOrdersScreen extends ConsumerWidget {
                               Text('\$${order.total.toStringAsFixed(2)}', style: const TextStyle(fontWeight: FontWeight.bold)),
                             ],
                           ),
-                          trailing: _OrderStatusChip(status: order.status),
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              IconButton(
+                                icon: const Icon(Icons.picture_as_pdf, color: Colors.red),
+                                onPressed: () => _generatePdf(context, ref, order),
+                              ),
+                              _OrderStatusChip(status: order.status),
+                            ],
+                          ),
                           onTap: () => context.push('/orders/edit/${order.id}'),
                         ),
                       );
@@ -131,6 +142,29 @@ class WorkOrdersScreen extends ConsumerWidget {
         child: const Icon(Icons.add),
       ),
     );
+  }
+
+  Future<void> _generatePdf(BuildContext context, WidgetRef ref, order) async {
+    final profileAsync = ref.read(businessProfileNotifierProvider);
+    profileAsync.whenData((profile) async {
+      if (profile == null) {
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Configure su perfil de negocio primero')),
+          );
+        }
+        return;
+      }
+      try {
+        await PdfService.shareWorkOrderPdf(business: profile, workOrder: order);
+      } catch (e) {
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Error al generar PDF: $e')),
+          );
+        }
+      }
+    });
   }
 }
 

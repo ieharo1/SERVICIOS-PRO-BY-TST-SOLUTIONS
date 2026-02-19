@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../presentation/screens/dashboard/dashboard_screen.dart';
-import '../presentation/screens/clients/clients_screen.dart';
-import '../presentation/screens/clients/client_form_screen.dart';
-import '../presentation/screens/quotes/quotes_screen.dart';
-import '../presentation/screens/quotes/quote_form_screen.dart';
-import '../presentation/screens/orders/work_orders_screen.dart';
-import '../presentation/screens/orders/work_order_form_screen.dart';
-import '../presentation/screens/profile/profile_screen.dart';
-import '../presentation/screens/settings/settings_screen.dart';
-import '../presentation/screens/reports/reports_screen.dart';
-import '../presentation/widgets/main_scaffold.dart';
+import '../../presentation/screens/dashboard/dashboard_screen.dart';
+import '../../presentation/screens/clients/clients_screen.dart';
+import '../../presentation/screens/clients/client_form_screen.dart';
+import '../../presentation/screens/quotes/quotes_screen.dart';
+import '../../presentation/screens/quotes/quote_form_screen.dart';
+import '../../presentation/screens/orders/work_orders_screen.dart';
+import '../../presentation/screens/orders/work_order_form_screen.dart';
+import '../../presentation/screens/profile/profile_screen.dart';
+import '../../presentation/screens/settings/settings_screen.dart';
+import '../../presentation/screens/reports/reports_screen.dart';
+import '../../presentation/widgets/main_scaffold.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
 final GlobalKey<NavigatorState> _shellNavigatorKey = GlobalKey<NavigatorState>();
