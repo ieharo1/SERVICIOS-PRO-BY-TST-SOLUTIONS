@@ -219,7 +219,7 @@ flutter build appbundle --release
 - 📱 WhatsApp: +593 99 796 2747
 - 💬 Telegram: @TST_Ecuador
 - 📧 Email: negocios@tstsolutions.com.ec
-- 🌐 Web: https://tst-solutions.netlify.app/
+- 🌐 Web: https://ieharo1.github.io/TST-SOLUTIONS/
 
 ### Redes Sociales
 - 📘 Facebook: https://www.facebook.com/tstsolutionsecuador/
